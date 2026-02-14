@@ -1,7 +1,7 @@
 :root{
-  --bg:#f8f6f4;
-  --text:#2c2c2c;
-  --accent:#b76e79;
+  --bg:#fff0f4;
+  --accent:#d6336c;
+  --text:#2b2b2b;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -9,99 +9,63 @@
 body{
   font-family:'Inter',sans-serif;
   background:var(--bg);
-  color:var(--text);
   overflow:hidden;
 }
 
-.bg-animation{
+.bg{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 30%, #fff 0%, transparent 60%),
-    radial-gradient(circle at 80% 70%, #f3e8ea 0%, transparent 60%),
-    #f8f6f4;
-  animation:softMove 15s ease-in-out infinite alternate;
+  radial-gradient(circle at 20% 30%, #ffd6e8 0%, transparent 60%),
+  radial-gradient(circle at 80% 70%, #ffe3ec 0%, transparent 60%);
+  animation:move 12s infinite alternate ease-in-out;
   z-index:-1;
 }
 
-@keyframes softMove{
+@keyframes move{
   from{transform:scale(1)}
   to{transform:scale(1.05)}
-}
-
-
-.app{
-  height:100vh;
-  position:relative;
 }
 
 .screen{
   position:absolute;
   inset:0;
-  padding:40px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  padding:40px;
   opacity:0;
-  transform:translateY(30px) scale(.98);
-  transition:all .7s cubic-bezier(.77,0,.18,1);
+  transform:translateY(20px);
+  transition:.6s ease;
 }
 
 .screen.active{
   opacity:1;
-  transform:translateY(0) scale(1);
+  transform:translateY(0);
 }
 
+.heart{color:var(--accent);margin-bottom:20px}
 
-header{
-  position:absolute;
-  top:20px;
-  left:20px;
-  right:20px;
-  display:flex;
-  justify-content:space-between;
-}
-
-button{
-  background:none;
-  border:none;
-  font-family:'Inter';
-  font-size:16px;
-  cursor:pointer;
-  color:var(--accent);
-}
-
-.names{
-  font-family:'Playfair Display',serif;
-  font-size:38px;
-}
-.center{
+.typewriter{
+  font-family:'Playfair Display';
+  font-size:24px;
+  min-height:60px;
   text-align:center;
-  max-width:400px;
 }
 
-.intro-text{
-  margin:20px 0 30px;
-  line-height:1.6;
-  opacity:.75;
-  font-weight:300;
-}
+.subtitle{margin:20px 0 30px;opacity:.7}
 
-.anniversary{
-  margin:10px 0 30px;
-  opacity:.7;
-}
-
-.btn{
+.primary{
   background:var(--accent);
   color:white;
-  padding:12px 26px;
+  border:none;
+  padding:12px 28px;
   border-radius:30px;
 }
 
 .lux-card{
-  width:320px;
+  width:300px;
   aspect-ratio:3/4;
   background:white;
   border-radius:18px;
@@ -110,42 +74,63 @@ button{
   overflow:hidden;
 }
 
-.lux-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+.lux-card img{width:100%;height:100%;object-fit:cover}
 
 .corner{
   position:absolute;
   font-family:'Playfair Display';
-  font-size:20px;
+  font-size:18px;
 }
 
-.corner.top{top:12px;left:12px;}
-.corner.bottom{bottom:12px;right:12px;transform:rotate(180deg)}
+.tl{top:12px;left:12px}
+.br{bottom:12px;right:12px;transform:rotate(180deg)}
 
-.letter{
-  max-width:400px;
+.envelope{
+  width:260px;
+  height:180px;
+  background:white;
+  position:relative;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+  cursor:pointer;
+}
+
+.flap{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:50%;
+  background:#ffe3ec;
+  transition:.6s;
+}
+
+.envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+.letter-inside{
+  padding:20px;
+  font-size:14px;
+  opacity:0;
+  transition:.6s;
+}
+
+.envelope.open .letter-inside{
+  opacity:1;
+}
+
+.letter-card{
   background:white;
   padding:30px;
   border-radius:16px;
-  box-shadow:0 20px 50px rgba(0,0,0,.1);
-  line-height:1.7;
+  max-width:350px;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
 }
 
-.signature{
-  margin-top:20px;
-  font-family:'Playfair Display';
-}
+.sign{margin-top:20px;font-family:'Playfair Display'}
 
-.secret-trigger{
-  margin-top:20px;
-  cursor:pointer;
-  opacity:.4;
-}
+.secret-dot{margin-top:20px;opacity:.4;cursor:pointer}
 
-.secret-video{
+.video-modal{
   display:none;
   position:fixed;
   inset:0;
@@ -154,11 +139,9 @@ button{
   align-items:center;
 }
 
-.secret-video video{
-  width:90%;
-}
+.video-modal video{width:90%}
 
-.game-board{
+.grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
@@ -171,19 +154,16 @@ button{
   background:white;
   border-radius:12px;
   box-shadow:0 10px 25px rgba(0,0,0,.15);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:24px;
   cursor:pointer;
 }
 
-.final{
+.quiz-box{
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  max-width:350px;
   text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
 }
 
-canvas{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-}
+canvas{position:fixed;inset:0;pointer-events:none}
