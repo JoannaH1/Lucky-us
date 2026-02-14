@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Lucky Us ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="app">
+
+    <!-- INTRO -->
+    <section class="screen active" id="intro" aria-label="Intro">
+      <div class="center">
+        <h1 class="title">♡</h1>
+        <h2 class="typewriter" data-text="Hey my love… I made something for you."></h2>
+        <p class="subtitle">Best viewed on your phone, full screen.</p>
+        <button class="btn btn-primary" onclick="go('lucky')">Tap to continue</button>
+      </div>
+      <div class="footer-note">Made with love.</div>
+    </section>
+
+    <!-- LUCKY US (PLAYING-CARD FRAME THAT FILLS THE SCREEN) -->
+    <section class="screen" id="lucky" aria-label="Lucky us">
+      <header class="topbar">
+        <button class="btn btn-ghost btn-icon" onclick="go('intro')" aria-label="Back">‹</button>
+        <div class="topbar-title">Lucky us</div>
+        <button class="btn btn-ghost" onclick="go('reasons')">Next</button>
+      </header>
+
+      <div class="lucky-wrap">
+        <div class="lucky-grid" role="img" aria-label="Playing-card frame with a center card showing your photo">
+          <!-- 3 × 5 grid (15 cards). All same size. Hearts only. Center card is in the middle. -->
+          <!-- Row 1 -->
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+
+          <!-- Row 2 -->
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+
+          <!-- Row 3 -->
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+
+          <!-- CENTER CARD -->
+          <button class="poker-card poker-card--center" id="luckyCard" type="button" aria-label="Lucky us card">
+            <img class="poker-photo" src="assets/hero.jpg" alt="Your photo" />
+            <div class="diagonal-label">Lucky us</div>
+          </button>
+
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+
+          <!-- Row 4 -->
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+
+          <!-- Row 5 -->
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+          <div class="poker-card poker-card--border"><span class="pip">♥</span></div>
+        </div>
+
+        <div class="hint subtle">
+          Tap the center card ♡
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button class="btn btn-ghost" onclick="go('reasons')">Continue</button>
+      </div>
+    </section>
+
+    <!-- REASONS -->
+    <section class="screen" id="reasons" aria-label="Reasons I love you">
+      <header class="topbar">
+        <button class="btn btn-ghost btn-icon" onclick="go('lucky')" aria-label="Back">‹</button>
+        <div class="topbar-title">Reasons I love you</div>
+        <button class="btn btn-ghost" onclick="go('timeline')">Next</button>
+      </header>
+
+      <div class="content">
+        <div class="cards-scroll" aria-label="Swipeable reasons cards">
+          <article class="reason-card"><span class="pill">01</span> You make me feel safe.</article>
+          <article class="reason-card"><span class="pill">02</span> You support my dreams.</article>
+          <article class="reason-card"><span class="pill">03</span> You make ordinary days feel special.</article>
+          <article class="reason-card"><span class="pill">04</span> You choose me — every day.</article>
+        </div>
+
+        <p class="subhint">Swipe through →</p>
+      </div>
+
+      <div class="bottom-actions">
+        <button class="btn btn-ghost" onclick="go('timeline')">Continue</button>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="screen" id="timeline" aria-label="Memory timeline">
+      <header class="topbar">
+        <button class="btn btn-ghost btn-icon" onclick="go('reasons')" aria-label="Back">‹</button>
+        <div class="topbar-title">Our timeline</div>
+        <button class="btn btn-ghost" onclick="go('game')">Next</button>
+      </header>
+
+      <div class="content">
+        <div class="timeline">
+          <div class="timeline-event">
+            <div class="dot"></div>
+            <div class="bubble">
+              <div class="bubble-title">First hello</div>
+              <div class="bubble-sub">The day everything changed.</div>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="dot"></div>
+            <div class="bubble">
+              <div class="bubble-title">First date</div>
+              <div class="bubble-sub">I knew I was in trouble (the good kind).</div>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="dot"></div>
+            <div class="bubble">
+              <div class="bubble-title">That trip</div>
+              <div class="bubble-sub">A core memory I keep replaying.</div>
+            </div>
+          </div>
+
+          <div class="timeline-event">
+            <div class="dot"></div>
+            <div class="bubble">
+              <div class="bubble-title">Now</div>
+              <div class="bubble-sub">Still choosing you.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <button class="btn btn-ghost" onclick="go('game')">Continue</button>
+      </div>
+    </section>
+
+    <!-- MEMORY GAME -->
+    <section class="screen" id="game" aria-label="Memory matching game">
+      <header class="topbar">
+        <button class="btn btn-ghost btn-icon" onclick="go('timeline')" aria-label="Back">‹</button>
+        <div class="topbar-title">Match our memories</div>
+        <button class="btn btn-ghost" id="skipAfterWin" onclick="go('quiz')" disabled>Next</button>
+      </header>
+
+      <div class="content game-content">
+        <div class="hud" aria-label="Game scoreboard">
+          <div class="hud-pill">Matches <span id="hudMatches">0</span>/8</div>
+          <div class="hud-pill">Moves <span id="hudMoves">0</span></div>
+          <div class="hud-pill">Time <span id="hudTime">0:00</span></div>
+          <button class="btn btn-ghost btn-small" id="restartGame">Restart</button>
+        </div>
+
+        <div class="game-board" id="memoryGrid" aria-label="Memory game board"></div>
+
+        <div class="win-modal" id="winModal" aria-hidden="true">
+          <div class="win-card">
+            <div class="win-title">You did it ♡</div>
+            <div class="win-sub">I love making memories with you.</div>
+            <button class="btn btn-primary" id="continueAfterWin">Continue</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="screen" id="quiz" aria-label="Mini quiz">
+      <header class="topbar">
+        <button class="btn btn-ghost btn-icon" onclick="go('game')" aria-label="Back">‹</button>
+        <div class="topbar-title">How well do you know us?</div>
+        <button class="btn btn-ghost" onclick="go('final')">Next</button>
+      </header>
+
+      <div class="content">
+        <div class="quiz" id="quizBox"></div>
+      </div>
+
+      <div class="bottom-actions">
+        <button class="btn btn-ghost" onclick="go('final')">Continue</button>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="screen" id="final" aria-label="Final page">
+      <header class="topbar">
+        <button class="btn btn-ghost btn-icon" onclick="go('quiz')" aria-label="Back">‹</button>
+        <div class="topbar-title">For you</div>
+        <span></span>
+      </header>
+
+      <div class="content">
+        <div class="final-card">
+          <div class="final-title">I love you.</div>
+          <div class="final-sub">Always.</div>
+          <div class="final-note">Screenshot this page so you can keep it.</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="confetti()">Celebrate ♡</button>
+      </div>
+
+      <canvas id="confetti"></canvas>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

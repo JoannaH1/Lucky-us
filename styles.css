@@ -1,0 +1,616 @@
+/* =========================
+   Editorial Minimal Theme
+   ========================= */
+:root{
+  --bg: #f6f6fb;
+  --bg2:#ffffff;
+  --text:#0f0f14;
+  --muted: rgba(15,15,20,.62);
+  --stroke: rgba(15,15,20,.10);
+  --stroke2: rgba(15,15,20,.14);
+
+  --card: rgba(255,255,255,.82);
+  --shadow: 0 18px 40px rgba(15,15,20,.08);
+  --shadow-sm: 0 10px 22px rgba(15,15,20,.08);
+
+  --accent:#e11d48; /* rose */
+  --accent-ink:#ffffff;
+
+  /* Playing-card initials (edit these) */
+  --init-top: "A";
+  --init-bottom: "J";
+  --suit: "♥";
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(225,29,72,.08), transparent 55%),
+    radial-gradient(900px 700px at 95% 5%, rgba(15,15,20,.05), transparent 55%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
+}
+
+/* App frame */
+.app{
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+  min-height:100svh;
+  padding:
+    calc(14px + env(safe-area-inset-top))
+    16px
+    calc(18px + env(safe-area-inset-bottom));
+  display:flex;
+  flex-direction:column;
+}
+
+/* Screens */
+.screen{
+  display:none;
+  min-height:calc(100svh - 32px);
+  flex:1;
+  flex-direction:column;
+  gap:16px;
+  animation: fadeIn .22s ease-out;
+}
+.screen.active{display:flex}
+
+@keyframes fadeIn{
+  from{opacity:0; transform: translateY(6px)}
+  to{opacity:1; transform: translateY(0)}
+}
+
+/* Typography */
+h1,h2{margin:0}
+.title{
+  font-family:'Playfair Display', serif;
+  font-size:44px;
+  line-height:1;
+  margin:0;
+}
+.typewriter{
+  font-family:'Playfair Display', serif;
+  font-size:26px;
+  line-height:1.25;
+  margin:6px 0 0;
+  min-height:68px;
+}
+.subtitle{
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
+.subtle{color:var(--muted)}
+.footer-note{
+  margin-top:auto;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:.02em;
+}
+
+/* Buttons */
+.btn{
+  appearance:none;
+  border:1px solid var(--stroke2);
+  background:transparent;
+  color:var(--text);
+  padding:12px 16px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.01em;
+}
+.btn:active{transform: translateY(1px)}
+.btn[disabled]{opacity:.45; pointer-events:none}
+.btn-primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--accent-ink);
+  box-shadow: 0 12px 28px rgba(225,29,72,.22);
+}
+.btn-ghost{
+  background:rgba(255,255,255,.65);
+  border-color:var(--stroke);
+  box-shadow: var(--shadow-sm);
+}
+.btn-icon{width:46px; padding:12px 0}
+.btn-small{padding:10px 14px; font-size:13px}
+
+/* Layout helpers */
+.center{
+  margin:auto 0;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:14px;
+}
+.bottom-actions{
+  display:flex;
+  justify-content:center;
+  margin-top:auto;
+}
+
+/* Topbar */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:2px 2px 0;
+}
+.topbar-title{
+  font-family:'Playfair Display', serif;
+  font-size:18px;
+  letter-spacing:.01em;
+}
+
+/* =========================
+   Playing card visuals
+   ========================= */
+.poker-card{
+  position:relative;
+  border-radius:18px;
+  background: linear-gradient(180deg, #ffffff, #fbfbfe);
+  border:1px solid var(--stroke);
+  box-shadow: var(--shadow-sm);
+  overflow:hidden;
+}
+
+/* Corners: A♥ top-left and J♥ bottom-right (rotated) */
+.poker-card::before{
+  content: var(--init-top) "\A" var(--suit);
+  white-space: pre;
+  position:absolute;
+  top:10px;
+  left:10px;
+  font-weight:700;
+  font-size:12px;
+  line-height:1.05;
+  color:var(--accent);
+  letter-spacing:.02em;
+}
+.poker-card::after{
+  content: var(--init-bottom) "\A" var(--suit);
+  white-space: pre;
+  position:absolute;
+  bottom:10px;
+  right:10px;
+  font-weight:700;
+  font-size:12px;
+  line-height:1.05;
+  color:var(--accent);
+  transform: rotate(180deg);
+  letter-spacing:.02em;
+}
+
+/* Border card: big heart pip */
+.poker-card--border .pip{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  color: rgba(225,29,72,.85);
+  text-shadow: 0 10px 18px rgba(225,29,72,.12);
+}
+
+/* Center card (same size as others) */
+.poker-card--center{
+  border:none;
+  padding:0;
+  cursor:pointer;
+}
+.poker-card--center:focus{outline:2px solid rgba(225,29,72,.35); outline-offset:2px}
+
+.poker-photo{
+  position:absolute;
+  inset:18px;
+  width:calc(100% - 36px);
+  height:calc(100% - 36px);
+  object-fit:cover;
+  border-radius:14px;
+  filter:saturate(1.02) contrast(1.02);
+}
+
+/* Diagonal side-ish label */
+.diagonal-label{
+  position:absolute;
+  left:-28%;
+  top:58%;
+  width:156%;
+  text-align:center;
+  font-family:'Playfair Display', serif;
+  font-size:18px;
+  letter-spacing:.06em;
+  text-transform:lowercase;
+  color:rgba(15,15,20,.92);
+  background: rgba(255,255,255,.78);
+  border-top:1px solid var(--stroke);
+  border-bottom:1px solid var(--stroke);
+  padding:8px 0;
+  transform: rotate(-16deg);
+  backdrop-filter: blur(6px);
+}
+
+/* Lucky layout */
+.lucky-wrap{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+
+/* Grid keeps a consistent "playing card" feel */
+.lucky-grid{
+  /* computed from viewport: make it tall enough so cards read like playing cards */
+  --gridH: min(76svh, 780px);
+  height: var(--gridH);
+  width: min(100%, calc(var(--gridH) * 3 / 7));
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap:10px;
+}
+
+/* Hint */
+.hint{
+  font-size:13px;
+  letter-spacing:.02em;
+}
+
+/* Heart burst */
+.heart-burst{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.heart{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  color: rgba(225,29,72,.85);
+  font-size:16px;
+  animation: heartFly 900ms ease-out forwards;
+  filter: drop-shadow(0 12px 16px rgba(225,29,72,.14));
+}
+@keyframes heartFly{
+  0%{opacity:0; transform: translate(-50%,-50%) scale(.5)}
+  10%{opacity:1}
+  100%{opacity:0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.2)}
+}
+
+/* =========================
+   Reasons cards
+   ========================= */
+.cards-scroll{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  padding: 4px 4px 12px;
+  scroll-snap-type:x mandatory;
+}
+.cards-scroll::-webkit-scrollbar{height:10px}
+.cards-scroll::-webkit-scrollbar-thumb{background:rgba(15,15,20,.12); border-radius:999px}
+
+.reason-card{
+  scroll-snap-align:center;
+  min-width: 78%;
+  border-radius:24px;
+  padding:18px 18px;
+  background: rgba(255,255,255,.82);
+  border:1px solid var(--stroke);
+  box-shadow: var(--shadow);
+  text-align:left;
+  font-size:16px;
+  line-height:1.45;
+}
+.pill{
+  display:inline-grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  background: rgba(225,29,72,.10);
+  border:1px solid rgba(225,29,72,.22);
+  color: var(--accent);
+  font-weight:700;
+  margin-right:10px;
+}
+.subhint{
+  text-align:center;
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================
+   Timeline
+   ========================= */
+.timeline{
+  position:relative;
+  padding-left:18px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  top:6px;
+  bottom:6px;
+  width:2px;
+  background: rgba(15,15,20,.12);
+}
+.timeline-event{
+  display:grid;
+  grid-template-columns: 18px 1fr;
+  gap:12px;
+  align-items:start;
+}
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background: var(--accent);
+  margin-top:16px;
+  box-shadow: 0 10px 18px rgba(225,29,72,.14);
+}
+.bubble{
+  background: rgba(255,255,255,.82);
+  border:1px solid var(--stroke);
+  border-radius:18px;
+  padding:14px 14px;
+  box-shadow: var(--shadow-sm);
+}
+.bubble-title{
+  font-weight:700;
+  font-size:14px;
+}
+.bubble-sub{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
+
+/* =========================
+   Game
+   ========================= */
+.game-content{gap:12px}
+.hud{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.hud-pill{
+  background: rgba(255,255,255,.82);
+  border:1px solid var(--stroke);
+  border-radius:999px;
+  padding:10px 12px;
+  font-size:13px;
+  box-shadow: var(--shadow-sm);
+}
+.game-board{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+  width:100%;
+}
+
+/* memory card */
+.memory-card{
+  border:none;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  width:100%;
+  aspect-ratio: 2.5 / 3.5;
+  perspective: 900px;
+}
+.mc-inner{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1);
+}
+.memory-card.is-flipped .mc-inner{transform: rotateY(180deg)}
+.memory-card.is-matched{pointer-events:none}
+
+.mc-face{
+  position:absolute;
+  inset:0;
+  border-radius:16px;
+  backface-visibility:hidden;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Back looks like a real playing card (hearts only) */
+.mc-back{
+  background: linear-gradient(180deg, #ffffff, #fbfbfe);
+}
+.mc-back::before{
+  content: var(--init-top) "\A" var(--suit);
+  white-space: pre;
+  position:absolute;
+  top:10px;
+  left:10px;
+  font-weight:800;
+  font-size:12px;
+  line-height:1.05;
+  color: var(--accent);
+}
+.mc-back::after{
+  content: var(--init-bottom) "\A" var(--suit);
+  white-space: pre;
+  position:absolute;
+  bottom:10px;
+  right:10px;
+  font-weight:800;
+  font-size:12px;
+  line-height:1.05;
+  color: var(--accent);
+  transform: rotate(180deg);
+}
+.back-pip{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color: rgba(225,29,72,.86);
+  font-size:28px;
+}
+.back-pattern{
+  position:absolute;
+  inset:16px;
+  border-radius:12px;
+  border:1px dashed rgba(225,29,72,.18);
+  background:
+    radial-gradient(circle at 20% 30%, rgba(225,29,72,.12), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(225,29,72,.10), transparent 40%),
+    linear-gradient(180deg, rgba(15,15,20,.02), transparent);
+}
+
+/* Front shows photo */
+.mc-front{
+  transform: rotateY(180deg);
+  background: #ffffff;
+}
+.mc-front img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Matched effect */
+.memory-card.is-matched .mc-inner{
+  transform: rotateY(180deg) scale(0.98);
+  filter: saturate(1.05);
+}
+.memory-card.is-matched .mc-front{
+  outline:2px solid rgba(225,29,72,.20);
+}
+
+/* Win modal */
+.win-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  place-items:center;
+  background: rgba(15,15,20,.22);
+  backdrop-filter: blur(6px);
+  padding: 22px;
+}
+.win-modal.show{display:grid}
+.win-card{
+  width:min(420px, 100%);
+  background: rgba(255,255,255,.92);
+  border:1px solid var(--stroke);
+  box-shadow: var(--shadow);
+  border-radius:26px;
+  padding:18px 16px;
+  text-align:center;
+}
+.win-title{
+  font-family:'Playfair Display', serif;
+  font-size:26px;
+}
+.win-sub{
+  margin:10px 0 14px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* =========================
+   Quiz
+   ========================= */
+.quiz{
+  background: rgba(255,255,255,.82);
+  border:1px solid var(--stroke);
+  border-radius:24px;
+  padding:16px;
+  box-shadow: var(--shadow);
+  text-align:left;
+}
+.quiz h3{
+  margin:0 0 12px;
+  font-family:'Playfair Display', serif;
+  font-size:20px;
+}
+.quiz .q{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:14px;
+  line-height:1.4;
+}
+.quiz .options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.quiz .opt{
+  border-radius:16px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.85);
+  padding:12px 14px;
+  font-weight:600;
+}
+.quiz .opt.correct{border-color: rgba(34,197,94,.45)}
+.quiz .opt.wrong{border-color: rgba(239,68,68,.45)}
+.quiz .result{
+  margin-top:12px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* =========================
+   Final
+   ========================= */
+.final-card{
+  background: rgba(255,255,255,.86);
+  border:1px solid var(--stroke);
+  border-radius:26px;
+  padding:22px 18px;
+  box-shadow: var(--shadow);
+  text-align:center;
+}
+.final-title{
+  font-family:'Playfair Display', serif;
+  font-size:34px;
+}
+.final-sub{
+  margin-top:6px;
+  font-family:'Playfair Display', serif;
+  font-size:22px;
+}
+.final-note{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:13px;
+}
+#confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
