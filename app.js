@@ -3,10 +3,32 @@ function go(id){
   document.getElementById(id).classList.add('active');
 }
 
-function openSecret(){
-  document.getElementById('secretVideo').style.display="flex";
+/* TYPEWRITER */
+const tw=document.querySelector(".typewriter");
+if(tw){
+  let i=0;
+  const text=tw.dataset.text;
+  function type(){
+    if(i<text.length){
+      tw.textContent+=text.charAt(i);
+      i++;
+      setTimeout(type,40);
+    }
+  }
+  type();
 }
 
+/* ENVELOPE */
+function openEnvelope(){
+  document.querySelector(".envelope").classList.toggle("open");
+}
+
+/* SECRET VIDEO */
+function showSecret(){
+  document.getElementById("videoModal").style.display="flex";
+}
+
+/* MEMORY GAME */
 const images=[
   "assets/us1.jpeg","assets/us2.jpeg",
   "assets/us3.jpeg","assets/us4.jpeg",
@@ -17,7 +39,7 @@ const images=[
 let cards=[...images,...images];
 cards.sort(()=>0.5-Math.random());
 
-const grid=document.getElementById("memoryGrid");
+const grid=document.getElementById("grid");
 cards.forEach(src=>{
   const div=document.createElement("div");
   div.className="card";
@@ -45,13 +67,21 @@ function check(){
   flipped=[];
 }
 
+/* QUIZ */
+document.getElementById("quizBox").innerHTML=`
+  <h3>Where was our first photo?</h3>
+  <button onclick="alert('Correct ♡')">At the café</button>
+  <button onclick="alert('Nope!')">At the beach</button>
+`;
+
+/* CONFETTI */
 function confetti(){
   const canvas=document.getElementById("confetti");
   const ctx=canvas.getContext("2d");
   canvas.width=window.innerWidth;
   canvas.height=window.innerHeight;
   for(let i=0;i<200;i++){
-    ctx.fillStyle="#b76e79";
+    ctx.fillStyle="#d6336c";
     ctx.fillRect(Math.random()*canvas.width,
                  Math.random()*canvas.height,
                  4,4);
