@@ -4,14 +4,9 @@ function go(id){
   const el = document.getElementById(id);
   if(!el){
     console.error("Missing section id:", id);
-    alert("I can't find the page: " + id + " (check IDs)");
     return;
   }
   el.classList.add('active');
-
-  // Accessibility: focus top of new section
-  el.setAttribute("tabindex","-1");
-  el.focus({preventScroll:true});
 }
 
 /* Typewriter */
@@ -30,7 +25,7 @@ function go(id){
   tick();
 })();
 
-/* Envelope open */
+/* Envelope toggle (tap/keyboard) */
 (function(){
   const env = document.getElementById("envelope");
   if(!env) return;
@@ -57,12 +52,10 @@ function go(id){
 
   btn.addEventListener("click", open);
   close.addEventListener("click", shut);
-  modal.addEventListener("click", (e) => {
-    if(e.target === modal) shut();
-  });
+  modal.addEventListener("click", (e) => { if(e.target === modal) shut(); });
 })();
 
-/* Memory game (8 photos) */
+/* Memory game (uses us1..us8 as pairs) */
 (function(){
   const grid = document.getElementById("memoryGrid");
   if(!grid) return;
@@ -72,8 +65,7 @@ function go(id){
   const hudTime = document.getElementById("hudTime");
   const restartBtn = document.getElementById("restart");
   const winModal = document.getElementById("winModal");
-  const continueAfterWin = document.getElementById("continueAfterWin");
-  const toQuiz = document.getElementById("toQuiz");
+  const closeWin = document.getElementById("closeWin");
 
   const images = [
     "assets/us1.jpeg","assets/us2.jpeg","assets/us3.jpeg","assets/us4.jpeg",
@@ -124,7 +116,15 @@ function go(id){
 
     const back = document.createElement("div");
     back.className = "face back";
-    back.innerHTML = `<div class="pip">♥</div>`;
+    back.innerHTML = `
+      <div class="cardback">
+        <div class="rank tl">A</div>
+        <div class="suit tl">♥</div>
+        <div class="pattern"></div>
+        <div class="rank br">J</div>
+        <div class="suit br">♥</div>
+      </div>
+    `;
 
     const front = document.createElement("div");
     front.className = "face front";
@@ -134,7 +134,6 @@ function go(id){
     card.appendChild(front);
 
     card.dataset.img = imgSrc;
-
     card.addEventListener("click", () => onFlip(card));
     return card;
   }
@@ -151,13 +150,11 @@ function go(id){
 
     hudMatches.textContent = "0";
     hudMoves.textContent = "0";
-    toQuiz.disabled = true;
 
     winModal.classList.remove("show");
     winModal.setAttribute("aria-hidden","true");
 
     grid.innerHTML = "";
-
     deck = shuffle([...images, ...images]);
     deck.forEach(src => grid.appendChild(makeCard(src)));
   }
@@ -202,27 +199,25 @@ function go(id){
   }
 
   restartBtn.addEventListener("click", reset);
-  continueAfterWin.addEventListener("click", () => {
+  closeWin.addEventListener("click", () => {
     winModal.classList.remove("show");
-    toQuiz.disabled = false;
-    toQuiz.focus();
+    winModal.setAttribute("aria-hidden","true");
   });
 
   reset();
 })();
 
-/* Quiz (5 Qs) */
+/* Quiz (you can change the questions anytime) */
 (function(){
   const box = document.getElementById("quizBox");
-  const finishBtn = document.getElementById("finishQuiz");
-  if(!box || !finishBtn) return;
+  if(!box) return;
 
   const questions = [
     { q: "When is our anniversary?", opts: ["2.2.2024", "2.14.2024", "1.1.2024", "3.3.2024"], a: 0 },
-    { q: "What’s my favorite kind of day with you?", opts: ["Simple + cozy", "Super fancy", "Always busy", "Always planned"], a: 0 },
-    { q: "What do I love most about you?", opts: ["Your heart", "Your phone", "Your shoes", "Your email"], a: 0 },
-    { q: "Our love language is…", opts: ["Care + effort", "Ignoring each other", "Arguing", "Ghosting"], a: 0 },
+    { q: "A perfect date is…", opts: ["Simple + cozy", "Very fancy", "Super loud", "Always rushed"], a: 0 },
+    { q: "My favorite thing about you is…", opts: ["Your heart", "Your shoes", "Your phone", "Your emails"], a: 0 },
     { q: "Us in one word:", opts: ["Lucky", "Temporary", "Random", "Meh"], a: 0 },
+    { q: "What do I want most?", opts: ["A life with you", "More drama", "Less love", "Nothing"], a: 0 },
   ];
 
   let i = 0;
@@ -248,12 +243,10 @@ function go(id){
           score++;
         }else{
           btn.classList.add("wrong");
-          // mark correct
           const correctBtn = box.querySelector(`.opt[data-idx="${item.a}"]`);
           if(correctBtn) correctBtn.classList.add("correct");
         }
 
-        // disable all
         box.querySelectorAll(".opt").forEach(b=>b.disabled=true);
 
         setTimeout(() => {
@@ -269,7 +262,6 @@ function go(id){
               </div>
               <div class="quiz-progress" style="margin-top:14px;">Tap Next →</div>
             `;
-            finishBtn.disabled = false;
           }
         }, 650);
       });
@@ -288,7 +280,7 @@ function confetti(){
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const pieces = Array.from({length:160}).map(() => ({
+  const pieces = Array.from({length:170}).map(() => ({
     x: Math.random()*canvas.width,
     y: -20 - Math.random()*canvas.height,
     s: 3 + Math.random()*5,
