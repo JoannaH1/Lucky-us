@@ -1,103 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahmed & Joanna ♡</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
 </head>
 
 <body>
 
-<div class="bg-animation"></div>
+<div class="bg"></div>
 
-<main class="app">
+<main>
 
 <!-- INTRO -->
 <section class="screen active" id="intro">
-  <div class="center">
-    <h1 class="names">A & J</h1>
-    <p class="anniversary">Since 2.2.2024</p>
+  <h1 class="heart">♡</h1>
+  <h2 class="typewriter" data-text="Hey my love… I made something just for you."></h2>
+  <p class="subtitle">Ahmed & Joanna — since 2.2.2024</p>
+  <button class="primary" onclick="go('card')">Tap to continue</button>
+</section>
 
-    <p class="intro-text">
-      I made something for you, love.  
-      Something a little special.
-    </p>
+<!-- LUXURY CARD -->
+<section class="screen" id="card">
+  <button class="back" onclick="go('intro')">‹</button>
+  <button class="next" onclick="go('reasons')">Next</button>
 
-    <button class="btn" onclick="go('lucky')">
-      Tap to continue
-    </button>
+  <div class="lux-card">
+    <span class="corner tl">A ♥</span>
+    <span class="corner br">J ♥</span>
+    <img src="assets/hero.jpeg">
   </div>
 </section>
 
+<!-- REASONS ENVELOPE -->
+<section class="screen" id="reasons">
+  <button class="back" onclick="go('card')">‹</button>
+  <button class="next" onclick="go('letter')">Next</button>
 
-<!-- LUXURY CARD -->
-<section class="screen" id="lucky">
-  <header>
-    <button onclick="go('intro')">‹</button>
-    <button onclick="go('letter')">Next</button>
-  </header>
-
-  <div class="lux-card">
-    <span class="corner top">A ♥</span>
-    <span class="corner bottom">J ♥</span>
-    <img src="assets/hero.jpeg" alt="Ahmed & Joanna">
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    <div class="letter-inside">
+      <p>You make me feel safe.</p>
+      <p>You choose me every day.</p>
+      <p>You are my calm.</p>
+      <p>You are my home.</p>
+    </div>
   </div>
+
+  <p class="hint">Tap the envelope</p>
 </section>
 
 <!-- LETTER -->
 <section class="screen" id="letter">
-  <header>
-    <button onclick="go('lucky')">‹</button>
-    <button onclick="go('game')">Next</button>
-  </header>
+  <button class="back" onclick="go('reasons')">‹</button>
+  <button class="next" onclick="go('game')">Next</button>
 
-  <div class="letter">
+  <div class="letter-card">
     <h2>To Ahmed,</h2>
     <p>
-      You are the calm in my chaos, the softness in my hardest days,
-      and the safest place I know.  
-      Loving you has been the most beautiful chapter of my life.
-      I choose you, always.
+      Loving you feels like the safest and warmest place in the world.
+      You make ordinary moments beautiful.
+      I choose you today, tomorrow, and always.
     </p>
-    <p class="signature">— Joanna</p>
+    <p class="sign">— Joanna</p>
   </div>
 
-  <div class="secret-trigger" onclick="openSecret()">
-    ♡
-  </div>
+  <div class="secret-dot" onclick="showSecret()">♡</div>
 
-  <div class="secret-video" id="secretVideo">
+  <div class="video-modal" id="videoModal">
     <video controls>
       <source src="assets/secret.mp4" type="video/mp4">
     </video>
   </div>
 </section>
 
-<!-- MEMORY GAME -->
+<!-- GAME -->
 <section class="screen" id="game">
-  <header>
-    <button onclick="go('letter')">‹</button>
-    <button onclick="go('final')">Skip</button>
-  </header>
+  <button class="back" onclick="go('letter')">‹</button>
+  <button class="next" onclick="go('quiz')">Next</button>
 
-  <div class="game-board" id="memoryGrid"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- QUIZ -->
+<section class="screen" id="quiz">
+  <button class="back" onclick="go('game')">‹</button>
+  <button class="next" onclick="go('final')">Next</button>
+
+  <div class="quiz-box" id="quizBox"></div>
 </section>
 
 <!-- FINAL -->
 <section class="screen" id="final">
-  <div class="final">
-    <h1>I love you.</h1>
-    <p>Always.</p>
-    <button onclick="confetti()">Celebrate</button>
-  </div>
+  <h1>I love you.</h1>
+  <p>Always.</p>
+  <button onclick="confetti()">Celebrate</button>
   <canvas id="confetti"></canvas>
 </section>
 
 </main>
 
-<script src="app.js" defer></script>
 </body>
 </html>
