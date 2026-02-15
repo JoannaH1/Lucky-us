@@ -22,53 +22,58 @@
     <section class="screen active" id="intro" aria-label="Intro">
       <div class="center">
         <div class="intro-mark">♡</div>
-        <h2 class="typewriter" data-text="Hey my love… I made something for you."></h2>
-        <p class="subtitle">Best viewed on your phone, full screen.</p>
-        <button class="btn btn-primary" type="button" onclick="go('lucky')">Tap to continue</button>
+        <h2 class="typewriter" data-text="Hey my love… I made something special for you."></h2>
+        <p class="subtitle">Best on iPhone — full screen.</p>
+        <button class="btn btn-primary" type="button" data-go="cards">Tap to continue</button>
       </div>
-
       <div class="footer-note">Made with love.</div>
     </section>
 
-    <!-- LUCKY (Cards frame + photo card) -->
-    <section class="screen" id="lucky" aria-label="Lucky us">
+    <!-- PAGE 2: 3×3 SQUARE PLAYING CARDS (CENTER = PHOTO) -->
+    <section class="screen" id="cards" aria-label="Lucky us">
       <div class="center">
-        <div class="card-frame" aria-label="Playing cards framing our photo">
-          <div class="edge-card top"></div>
-          <div class="edge-card right"></div>
-          <div class="edge-card bottom"></div>
-          <div class="edge-card left"></div>
+        <div class="card-grid" aria-label="Square playing cards grid">
+          <!-- 3x3 equal squares -->
+          <div class="sq-card back"></div>
+          <div class="sq-card back"></div>
+          <div class="sq-card back"></div>
 
-          <div class="photo-card" aria-label="Our photo card">
-            <span class="rank tl">A</span>
-            <span class="suit tl">♥</span>
-            <span class="rank br">J</span>
-            <span class="suit br">♥</span>
+          <div class="sq-card back"></div>
+
+          <!-- CENTER PHOTO CARD -->
+          <div class="sq-card center-card" aria-label="Center photo card">
             <img src="assets/hero.jpeg" alt="Us" />
+            <div class="center-corners">
+              <span class="c tl">A ♥</span>
+              <span class="c br">J ♥</span>
+            </div>
           </div>
+
+          <div class="sq-card back"></div>
+
+          <div class="sq-card back"></div>
+          <div class="sq-card back"></div>
+          <div class="sq-card back"></div>
         </div>
 
-        <p class="hint subtle">♡</p>
+        <p class="hint subtle">A little lucky, a lot of love.</p>
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" type="button" onclick="go('intro')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" type="button" onclick="go('reasons')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" data-go="intro" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" data-go="reasons">Next</button>
       </nav>
     </section>
 
-    <!-- REASONS (Envelope — hidden until opened) -->
+    <!-- REASONS (CLEAN ENVELOPE) -->
     <section class="screen" id="reasons" aria-label="Reasons">
       <div class="center">
         <div class="section-title">A few reasons</div>
 
         <button class="envelope" id="envelope" type="button" aria-label="Tap to open the envelope">
           <div class="env-shadow"></div>
-
-          <!-- back -->
           <div class="env-back"></div>
 
-          <!-- letter (hidden until open) -->
           <div class="env-letter" aria-hidden="true">
             <div class="env-letter-inner">
               <p>• You make me feel safe.</p>
@@ -79,7 +84,6 @@
             </div>
           </div>
 
-          <!-- front -->
           <div class="env-front"></div>
           <div class="env-flap"></div>
           <div class="env-seal">♡</div>
@@ -89,8 +93,8 @@
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" type="button" onclick="go('lucky')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" type="button" onclick="go('letter')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" data-go="cards" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" data-go="letter">Next</button>
       </nav>
     </section>
 
@@ -99,14 +103,18 @@
       <div class="center">
         <div class="letter-card">
           <h2>To you,</h2>
+
           <p>
-            I don’t say it enough, but I notice everything you do for me.
-            Thank you for your patience, your care, and the way you make life feel softer.
+            I notice everything you do for me — the small things, the quiet things,
+            the things you don’t even realize matter. Thank you for being patient with me,
+            for choosing me, for making life feel softer.
           </p>
+
           <p>
-            You don’t understand the love I have for you.
-            You are the best thing that ever happened to me. I love you.
+            I love you in a way that feels calm, safe, and certain.
+            You’re my favorite person. Always.
           </p>
+
           <p class="sign">— Joanna</p>
 
           <div class="secret-row">
@@ -117,8 +125,8 @@
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" type="button" onclick="go('reasons')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" type="button" onclick="go('game')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" data-go="reasons" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" data-go="game">Next</button>
       </nav>
 
       <!-- Secret video modal -->
@@ -154,16 +162,16 @@
           </div>
         </div>
 
-        <p class="hint subtle">You can always go next ♡</p>
+        <p class="hint subtle">Next works even if he doesn’t finish ♡</p>
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" type="button" onclick="go('letter')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" type="button" onclick="go('final')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" data-go="letter" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" data-go="final">Next</button>
       </nav>
     </section>
 
-    <!-- FINAL -->
+    <!-- FINAL (CHANGE IMAGE HERE) -->
     <section class="screen" id="final" aria-label="Final">
       <div class="center">
         <div class="final-card">
@@ -172,12 +180,13 @@
           <div class="final-note">Screenshot this ♡</div>
         </div>
 
-        <div class="bonus-photo" aria-label="Bonus photo">
-          <img src="assets/us9.jpeg" alt="Bonus us photo">
+        <!-- Change this to ANY image you want -->
+        <div class="bonus-photo" aria-label="Final photo">
+          <img src="assets/us9.jpeg" alt="Final us photo">
           <div class="bonus-cap">us ♡</div>
         </div>
 
-        <button class="btn btn-primary" type="button" onclick="confetti()">Celebrate ♡</button>
+        <button class="btn btn-primary" type="button" id="celebrateBtn">Celebrate ♡</button>
       </div>
 
       <canvas id="confetti"></canvas>
