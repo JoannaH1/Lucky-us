@@ -10,7 +10,124 @@
 
 <link rel="stylesheet" href="styles.css">
 <script src="app.js" defer></script>
+</head><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
 </head>
+
+<body>
+<div class="bg"></div>
+
+<main class="app">
+
+<!-- INTRO -->
+<section class="screen active" id="intro">
+  <div class="center">
+    <div class="intro-heart">♡</div>
+
+    <!-- Text is visible by default -->
+    <h2 class="typewriter" data-text="Hey my love… I made something special for you.">
+      Hey my love… I made something special for you.
+    </h2>
+
+    <button class="btn primary" data-go="cards">Tap to continue</button>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="screen" id="cards">
+  <div class="center">
+
+    <div class="card-grid">
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+
+      <div class="card-back"></div>
+
+      <div class="card-center">
+        <img src="assets/hero.jpeg" alt="Us">
+      </div>
+
+      <div class="card-back"></div>
+
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+    </div>
+
+  </div>
+
+  <nav class="nav">
+    <button data-go="intro">‹</button>
+    <button data-go="reasons">Next</button>
+  </nav>
+</section>
+
+<!-- ENVELOPE -->
+<section class="screen" id="reasons">
+  <div class="center">
+    <button class="envelope" id="envelope">
+      <div class="letter">
+        <p>• You make me feel safe.</p>
+        <p>• You are gentle with my heart.</p>
+        <p>• You show up for me.</p>
+        <p>• You feel like home.</p>
+      </div>
+    </button>
+  </div>
+
+  <nav class="nav">
+    <button data-go="cards">‹</button>
+    <button data-go="letter">Next</button>
+  </nav>
+</section>
+
+<!-- LETTER -->
+<section class="screen" id="letter">
+  <div class="center">
+    <div class="letter-card">
+      <h2>To you,</h2>
+      <p>I love you in quiet moments.</p>
+      <p>I love you in loud ones.</p>
+      <p>I love you always.</p>
+      <p>— Joanna</p>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <button data-go="reasons">‹</button>
+    <button data-go="final">Next</button>
+  </nav>
+</section>
+
+<!-- FINAL -->
+<section class="screen" id="final">
+  <div class="center">
+    <h1>I love you.</h1>
+    <div class="final-photo">
+      <img src="assets/us9.jpeg" alt="Final">
+    </div>
+  </div>
+
+  <nav class="nav">
+    <button data-go="letter">‹</button>
+  </nav>
+</section>
+
+</main>
+</body>
+</html>
+
 
 <body>
 <div class="bg"></div>
