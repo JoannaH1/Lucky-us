@@ -17,6 +17,23 @@ body{
   background:var(--bg);
   overflow:hidden;
 }
+function go(id){
+  var screens = document.querySelectorAll(".screen");
+  for (var i=0; i<screens.length; i++) screens[i].classList.remove("active");
+  var el = document.getElementById(id);
+  if(!el){ console.error("Missing section:", id); return; }
+  el.classList.add("active");
+}
+window.go = go;
+
+
+document.addEventListener("click", function(e){
+  var t = e.target;
+  if(!t) return;
+  var btn = t.closest("[data-go]");
+  if(!btn) return;
+  go(btn.getAttribute("data-go"));
+});
 
 /* romantic premium bg */
 .bg{
