@@ -1,172 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>♡</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>♡</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" />
-  <script src="app.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
 </head>
 
 <body>
-  <div class="bg"></div>
+<div class="bg"></div>
 
-  <main class="app">
+<main class="app">
 
-    <!-- INTRO -->
-    <section class="screen active" id="intro">
-      <div class="center">
-        <div class="intro-mark">♡</div>
-       <h2 class="typewriter">
-  Hey my love… I made something special for you.
-</h2>
-        <p class="subtitle">Best viewed on your phone (iPhone preferred).</p>
-        <button class="btn btn-primary" data-go="cards">Tap to continue</button>
-      </div>
-    </section>
+<!-- INTRO -->
+<section class="screen active" id="intro">
+  <div class="center">
+    <div class="intro-heart">♡</div>
 
-    <!-- REALISTIC 3×3 CARD GRID -->
-    <section class="screen" id="cards">
-      <div class="center">
-        <div class="card-grid">
-          <!-- 3×3 grid with center card as photo -->
-          <div class="sq-card back"></div>
-          <div class="sq-card back"></div>
-          <div class="sq-card back"></div>
+    <!-- TEXT ALWAYS VISIBLE (fallback) -->
+    <h2 class="typewriter" data-text="Hey my love… I made something special for you.">
+      Hey my love… I made something special for you.
+    </h2>
 
-          <div class="sq-card back"></div>
+    <button class="btn primary" data-go="cards">Tap to continue</button>
+  </div>
+</section>
 
-          <div class="sq-card center-card">
-            <img src="assets/hero.jpeg" alt="Us">
-          </div>
+<!-- PAGE 2 – 3x3 SQUARE PLAYING CARDS -->
+<section class="screen" id="cards">
+  <div class="center">
 
-          <div class="sq-card back"></div>
+    <div class="card-grid">
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
 
-          <div class="sq-card back"></div>
-          <div class="sq-card back"></div>
-          <div class="sq-card back"></div>
-        </div>
-        <p class="hint subtle">Lucky love ♡</p>
+      <div class="card-back"></div>
+
+      <!-- CENTER PHOTO -->
+      <div class="card-center">
+        <img src="assets/hero.jpeg" alt="Us">
       </div>
 
-      <nav class="nav-bottom">
-        <button class="btn btn-ghost btn-icon" data-go="intro">‹</button>
-        <button class="btn btn-ghost" data-go="reasons">Next</button>
-      </nav>
-    </section>
+      <div class="card-back"></div>
 
-    <!-- ENVELOPE REASONS -->
-    <section class="screen" id="reasons">
-      <div class="center">
-        <div class="section-title">A few reasons</div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+    </div>
 
-        <button class="envelope" id="envelope">
-          <div class="env-shadow"></div>
-          <div class="env-back"></div>
+  </div>
 
-          <div class="env-letter">
-            <div class="env-letter-inner">
-              <p>• You make me feel safe.</p>
-              <p>• You're gentle with my heart.</p>
-              <p>• You make ordinary days feel special.</p>
-              <p>• You show up in the little things.</p>
-              <p>• You feel like home.</p>
-            </div>
-          </div>
+  <nav class="nav">
+    <button data-go="intro">‹</button>
+    <button data-go="reasons">Next</button>
+  </nav>
+</section>
 
-          <div class="env-front"></div>
-          <div class="env-flap"></div>
-          <div class="env-seal">♡</div>
-        </button>
-
-        <p class="hint">Tap the envelope</p>
+<!-- ENVELOPE -->
+<section class="screen" id="reasons">
+  <div class="center">
+    <button class="envelope" id="envelope">
+      <div class="letter">
+        <p>• You make me feel safe.</p>
+        <p>• You are gentle with my heart.</p>
+        <p>• You show up for me.</p>
+        <p>• You feel like home.</p>
       </div>
+    </button>
+  </div>
 
-      <nav class="nav-bottom">
-        <button class="btn btn-ghost btn-icon" data-go="cards">‹</button>
-        <button class="btn btn-ghost" data-go="letter">Next</button>
-      </nav>
-    </section>
+  <nav class="nav">
+    <button data-go="cards">‹</button>
+    <button data-go="letter">Next</button>
+  </nav>
+</section>
 
-    <!-- LETTER + SECRET VIDEO -->
-    <section class="screen" id="letter">
-      <div class="center">
-        <div class="letter-card">
-          <h2>To you,</h2>
-          <p>I love you in the quiet moments…</p>
-          <p>…and especially in every ordinary day in between.</p>
-          <p class="sign">— Joanna</p>
-          <div class="secret-row">
-            <span class="secret-label">psst…</span>
-            <button class="btn btn-small btn-ghost" id="secretBtn">tap here</button>
-          </div>
-        </div>
-      </div>
+<!-- LETTER -->
+<section class="screen" id="letter">
+  <div class="center">
+    <div class="letter-card">
+      <h2>To you,</h2>
+      <p>I love you in quiet moments.</p>
+      <p>I love you in loud ones.</p>
+      <p>I love you always.</p>
+      <p>— Joanna</p>
 
-      <nav class="nav-bottom">
-        <button class="btn btn-ghost btn-icon" data-go="reasons">‹</button>
-        <button class="btn btn-ghost" data-go="game">Next</button>
-      </nav>
+      <button id="secretBtn">tap here</button>
+    </div>
+  </div>
 
-      <div class="modal" id="videoModal">
-        <div class="modal-card">
-          <button class="btn btn-ghost btn-icon modal-close" id="closeVideo">✕</button>
-          <video controls playsinline>
-            <source src="assets/secret.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </section>
+  <nav class="nav">
+    <button data-go="reasons">‹</button>
+    <button data-go="game">Next</button>
+  </nav>
 
-    <!-- MEMORY GAME -->
-    <section class="screen" id="game">
-      <div class="center game-center">
-        <div class="section-title">Match our memories</div>
+  <div class="modal" id="videoModal">
+    <div class="modal-box">
+      <button id="closeVideo">✕</button>
+      <video controls>
+        <source src="assets/secret.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
 
-        <div class="hud">
-          <div class="hud-pill">Matches <span id="hudMatches">0</span>/8</div>
-          <div class="hud-pill">Moves <span id="hudMoves">0</span></div>
-          <div class="hud-pill">Time <span id="hudTime">0:00</span></div>
-          <button class="btn btn-small btn-ghost" id="restart">Restart</button>
-        </div>
+<!-- MEMORY GAME -->
+<section class="screen" id="game">
+  <div class="center">
 
-        <div class="game-board" id="memoryGrid"></div>
+    <div class="stats">
+      Matches <span id="matchCount">0</span>/8
+    </div>
 
-        <div class="win-modal" id="winModal">
-          <div class="win-card">
-            <div class="win-title">You did it ♡</div>
-            <button class="btn btn-primary" id="closeWin">Close</button>
-          </div>
-        </div>
-      </div>
+    <div class="grid" id="grid"></div>
 
-      <nav class="nav-bottom">
-        <button class="btn btn-ghost btn-icon" data-go="letter">‹</button>
-        <button class="btn btn-ghost" data-go="final">Next</button>
-      </nav>
-    </section>
+  </div>
 
-    <!-- FINAL -->
-    <section class="screen" id="final">
-      <div class="center">
-        <div class="final-card">
-          <div class="final-title">I love you.</div>
-          <div class="final-sub">Always.</div>
-        </div>
-        <div class="bonus-photo">
-          <img src="assets/us9.jpeg" alt="Bonus photo">
-          <div class="bonus-cap">us ♡</div>
-        </div>
-        <button class="btn btn-primary" id="celebrateBtn">Celebrate ♡</button>
-      </div>
-      <canvas id="confetti"></canvas>
-    </section>
+  <nav class="nav">
+    <button data-go="letter">‹</button>
+    <button data-go="final">Next</button>
+  </nav>
+</section>
 
-  </main>
+<!-- FINAL -->
+<section class="screen" id="final">
+  <div class="center">
+    <h1>I love you.</h1>
+    <div class="final-photo">
+      <img src="assets/us9.jpeg" alt="Final">
+    </div>
+  </div>
+
+  <nav class="nav">
+    <button data-go="game">‹</button>
+  </nav>
+</section>
+
+</main>
 </body>
 </html>
