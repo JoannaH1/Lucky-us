@@ -21,17 +21,17 @@
     <!-- INTRO -->
     <section class="screen active" id="intro" aria-label="Intro">
       <div class="center">
-        <div class="intro-badge">♡</div>
-        <h2 class="typewriter" data-text="Hey my love… I made something just for you."></h2>
+        <div class="intro-mark">♡</div>
+        <h2 class="typewriter" data-text="Hey my love… I made something for you."></h2>
         <p class="subtitle">Best viewed on your phone, full screen.</p>
-        <button class="btn btn-primary" onclick="go('lucky')">Tap to continue</button>
+        <button class="btn btn-primary" type="button" onclick="go('lucky')">Tap to continue</button>
       </div>
 
       <div class="footer-note">Made with love.</div>
     </section>
 
-    <!-- LUCKY (REALISTIC CARD FRAME + CENTER PHOTO CARD) -->
-    <section class="screen" id="lucky" aria-label="Lucky card">
+    <!-- LUCKY (Cards frame + photo card) -->
+    <section class="screen" id="lucky" aria-label="Lucky us">
       <div class="center">
         <div class="card-frame" aria-label="Playing cards framing our photo">
           <div class="edge-card top"></div>
@@ -39,32 +39,38 @@
           <div class="edge-card bottom"></div>
           <div class="edge-card left"></div>
 
-          <div class="lux-card" aria-label="Center card">
-            <span class="corner tl">A ♥</span>
-            <span class="corner br">J ♥</span>
+          <div class="photo-card" aria-label="Our photo card">
+            <span class="rank tl">A</span>
+            <span class="suit tl">♥</span>
+            <span class="rank br">J</span>
+            <span class="suit br">♥</span>
             <img src="assets/hero.jpeg" alt="Us" />
           </div>
         </div>
+
         <p class="hint subtle">♡</p>
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" onclick="go('intro')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" onclick="go('reasons')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" onclick="go('intro')" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" onclick="go('reasons')">Next</button>
       </nav>
     </section>
 
-    <!-- REASONS (SEALED ENVELOPE) -->
+    <!-- REASONS (Envelope — hidden until opened) -->
     <section class="screen" id="reasons" aria-label="Reasons">
       <div class="center">
         <div class="section-title">A few reasons</div>
 
-        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Tap to open the envelope">
+        <button class="envelope" id="envelope" type="button" aria-label="Tap to open the envelope">
           <div class="env-shadow"></div>
+
+          <!-- back -->
           <div class="env-back"></div>
 
-          <div class="env-letter">
-            <div class="env-letter-inner" aria-hidden="true">
+          <!-- letter (hidden until open) -->
+          <div class="env-letter" aria-hidden="true">
+            <div class="env-letter-inner">
               <p>• You make me feel safe.</p>
               <p>• You’re gentle with my heart.</p>
               <p>• You make ordinary days feel special.</p>
@@ -73,21 +79,22 @@
             </div>
           </div>
 
+          <!-- front -->
           <div class="env-front"></div>
           <div class="env-flap"></div>
-          <div class="seal">♡</div>
-        </div>
+          <div class="env-seal">♡</div>
+        </button>
 
         <p class="hint">Tap the envelope</p>
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" onclick="go('lucky')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" onclick="go('letter')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" onclick="go('lucky')" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" onclick="go('letter')">Next</button>
       </nav>
     </section>
 
-    <!-- LETTER -->
+    <!-- LETTER + SECRET VIDEO -->
     <section class="screen" id="letter" aria-label="Letter">
       <div class="center">
         <div class="letter-card">
@@ -95,13 +102,10 @@
           <p>
             I don’t say it enough, but I notice everything you do for me.
             Thank you for your patience, your care, and the way you make life feel softer.
-            You don't understand the love I have for you, you are the best thing that ever happened to me. 
-            I love you.
           </p>
           <p>
-            I love you — in the quiet moments, in the loud ones,
-            and in every ordinary day in between.
-            You are my favorite person.
+            You don’t understand the love I have for you.
+            You are the best thing that ever happened to me. I love you.
           </p>
           <p class="sign">— Joanna</p>
 
@@ -113,14 +117,14 @@
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" onclick="go('reasons')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" onclick="go('game')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" onclick="go('reasons')" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" onclick="go('game')">Next</button>
       </nav>
 
       <!-- Secret video modal -->
       <div class="modal" id="videoModal" aria-hidden="true">
         <div class="modal-card">
-          <button class="btn btn-ghost btn-icon modal-close" id="closeVideo" aria-label="Close">✕</button>
+          <button class="btn btn-ghost btn-icon modal-close" id="closeVideo" type="button" aria-label="Close">✕</button>
           <video controls playsinline>
             <source src="assets/secret.mp4" type="video/mp4" />
           </video>
@@ -128,19 +132,19 @@
       </div>
     </section>
 
-    <!-- GAME -->
+    <!-- MEMORY GAME -->
     <section class="screen" id="game" aria-label="Memory game">
       <div class="center game-center">
         <div class="section-title">Match our memories</div>
 
-        <div class="hud" aria-label="Game HUD">
+        <div class="hud" aria-label="Game stats">
           <div class="hud-pill">Matches <span id="hudMatches">0</span>/8</div>
           <div class="hud-pill">Moves <span id="hudMoves">0</span></div>
           <div class="hud-pill">Time <span id="hudTime">0:00</span></div>
           <button class="btn btn-small btn-ghost" id="restart" type="button">Restart</button>
         </div>
 
-        <div class="game-board" id="memoryGrid" aria-label="Game grid"></div>
+        <div class="game-board" id="memoryGrid" aria-label="Memory grid"></div>
 
         <div class="win-modal" id="winModal" aria-hidden="true">
           <div class="win-card">
@@ -150,25 +154,12 @@
           </div>
         </div>
 
-        <p class="hint subtle">Next is always available ♡</p>
+        <p class="hint subtle">You can always go next ♡</p>
       </div>
 
       <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" onclick="go('letter')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" onclick="go('quiz')">Next</button>
-      </nav>
-    </section>
-
-    <!-- QUIZ -->
-    <section class="screen" id="quiz" aria-label="Quiz">
-      <div class="center">
-        <div class="section-title">How well do you know us?</div>
-        <div class="quiz-box" id="quizBox"></div>
-      </div>
-
-      <nav class="nav-bottom" aria-label="Navigation">
-        <button class="btn btn-ghost btn-icon" onclick="go('game')" aria-label="Back">‹</button>
-        <button class="btn btn-ghost" onclick="go('final')">Next</button>
+        <button class="btn btn-ghost btn-icon" type="button" onclick="go('letter')" aria-label="Back">‹</button>
+        <button class="btn btn-ghost" type="button" onclick="go('final')">Next</button>
       </nav>
     </section>
 
@@ -186,7 +177,7 @@
           <div class="bonus-cap">us ♡</div>
         </div>
 
-        <button class="btn btn-primary" onclick="confetti()">Celebrate ♡</button>
+        <button class="btn btn-primary" type="button" onclick="confetti()">Celebrate ♡</button>
       </div>
 
       <canvas id="confetti"></canvas>
