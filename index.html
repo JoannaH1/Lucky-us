@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --pink:#d6336c;
+  --bg:#fff0f5;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  overflow:hidden;
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at 30% 30%, #ffd6e8 0%, transparent 60%);
+  animation:float 12s infinite alternate ease-in-out;
+  z-index:-1;
+}
+
+@keyframes float{
+  from{transform:scale(1)}
+  to{transform:scale(1.05)}
+}
+
+.app{height:100svh; position:relative}
+
+.screen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transition:.5s ease;
+}
+
+.screen.active{opacity:1}
+
+.center{text-align:center; padding:20px}
+
+.nav{
+  position:absolute;
+  bottom:20px;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:0 30px;
+}
+
+.nav button{
+  background:none;
+  border:none;
+  font-size:18px;
+  color:var(--pink);
+  cursor:pointer;
+}
+
+.intro-heart{
+  font-size:40px;
+  color:var(--pink);
+  margin-bottom:20px;
+}
+
+.typewriter{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  min-height:60px;
+  position:relative;
+}
+
+.typewriter::after{
+  content:"|";
+  position:absolute;
+  right:-10px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,100%{opacity:1}
+  50%{opacity:0}
+}
+
+.btn{
+  background:var(--pink);
+  color:white;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  margin-top:25px;
+  cursor:pointer;
+}
+
+/* 3x3 grid */
+.card-grid{
+  width:90vw;
+  max-width:420px;
+  aspect-ratio:1/1;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.card-back,
+.card-center{
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  position:relative;
+  background:white;
+}
+
+.card-back::before{
+  content:"A ♥";
+  position:absolute;
+  top:10px;
+  left:10px;
+  font-family:'Playfair Display',serif;
+}
+
+.card-center img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+}
+
+/* Envelope */
+.envelope{
+  width:280px;
+  height:200px;
+  background:white;
+  border-radius:16px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.letter{
+  opacity:0;
+  padding:20px;
+  text-align:left;
+  transition:.5s;
+}
+
+.envelope.open .letter{opacity:1}
+
+/* Letter */
+.letter-card{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  max-width:300px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+/* Game */
+.grid{
+  width:90vw;
+  max-width:420px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.memory{
+  aspect-ratio:3/4;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.memory img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.final-photo{
+  width:260px;
+  border-radius:16px;
+  overflow:hidden;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<main class="app">
+
+<section class="screen active" id="intro">
+  <div class="center">
+    <div class="intro-heart">♡</div>
+    <h2 class="typewriter" data-text="Hey my love… I made something special for you.">
+      Hey my love… I made something special for you.
+    </h2>
+    <button class="btn" data-go="cards">Tap to continue</button>
+  </div>
+</section>
+
+<section class="screen" id="cards">
+  <div class="center">
+    <div class="card-grid">
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-center">
+        <img src="assets/hero.jpeg" alt="Us">
+      </div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+      <div class="card-back"></div>
+    </div>
+  </div>
+  <div class="nav">
+    <button data-go="intro">‹</button>
+    <button data-go="reasons">Next</button>
+  </div>
+</section>
+
+<section class="screen" id="reasons">
+  <div class="center">
+    <div class="envelope" id="envelope">
+      <div class="letter">
+        <p>• You make me feel safe.</p>
+        <p>• You are gentle with my heart.</p>
+        <p>• You show up for me.</p>
+        <p>• You feel like home.</p>
+      </div>
+    </div>
+  </div>
+  <div class="nav">
+    <button data-go="cards">‹</button>
+    <button data-go="game">Next</button>
+  </div>
+</section>
+
+<section class="screen" id="game">
+  <div class="center">
+    <div id="grid" class="grid"></div>
+  </div>
+  <div class="nav">
+    <button data-go="reasons">‹</button>
+    <button data-go="final">Next</button>
+  </div>
+</section>
+
+<section class="screen" id="final">
+  <div class="center">
+    <h1>I love you.</h1>
+    <div class="final-photo">
+      <img src="assets/us9.jpeg" alt="Final">
+    </div>
+  </div>
+  <div class="nav">
+    <button data-go="game">‹</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  function go(id){
+    document.querySelectorAll(".screen").forEach(function(s){
+      s.classList.remove("active");
+    });
+    var target = document.getElementById(id);
+    if(target) target.classList.add("active");
+  }
+
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest("[data-go]");
+    if(btn){
+      go(btn.getAttribute("data-go"));
+    }
+  });
+
+  // Typewriter
+  var tw = document.querySelector(".typewriter");
+  if(tw){
+    var text = tw.getAttribute("data-text");
+    tw.textContent = "";
+    var i = 0;
+    function type(){
+      if(i < text.length){
+        tw.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 40);
+      }
+    }
+    type();
+  }
+
+  // Envelope
+  var env = document.getElementById("envelope");
+  if(env){
+    env.addEventListener("click", function(){
+      env.classList.toggle("open");
+    });
+  }
+
+  // Memory Game
+  var grid = document.getElementById("grid");
+  if(grid){
+    var images = [
+      "assets/us1.jpeg","assets/us2.jpeg",
+      "assets/us3.jpeg","assets/us4.jpeg",
+      "assets/us5.jpeg","assets/us6.jpeg",
+      "assets/us7.jpeg","assets/us8.jpeg"
+    ];
+    var deck = images.concat(images);
+    deck.sort(function(){return 0.5 - Math.random();});
+
+    var flipped = [];
+
+    deck.forEach(function(src){
+      var card = document.createElement("div");
+      card.className = "memory";
+
+      card.addEventListener("click", function(){
+        if(card.querySelector("img")) return;
+
+        var img = document.createElement("img");
+        img.src = src;
+        card.appendChild(img);
+        flipped.push({card:card,src:src});
+
+        if(flipped.length === 2){
+          setTimeout(function(){
+            if(flipped[0].src !== flipped[1].src){
+              flipped[0].card.innerHTML = "";
+              flipped[1].card.innerHTML = "";
+            }
+            flipped = [];
+          },700);
+        }
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
+});
+</script>
+
+</body>
+</html>
