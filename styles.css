@@ -33,12 +33,15 @@ body{
   opacity:0;
   transform:translateX(30px);
   transition:all .6s ease;
+  pointer-events:none;   /* 👈 ADD THIS */
 }
 
 .screen.active{
   opacity:1;
   transform:translateX(0);
+  pointer-events:auto;   /* 👈 ADD THIS */
 }
+
 
 .topbar{
   display:flex;
