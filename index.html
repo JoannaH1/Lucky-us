@@ -1,1 +1,68 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>For Us ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=1" />
+  <script src="app.js?v=1" defer></script>
+</head>
+<body>
+
+  <!-- Soft romantic background -->
+  <div class="bg">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="grain"></div>
+  </div>
+
+  <main class="app">
+
+    <!-- PAGE 1: INTRO -->
+    <section class="screen active" id="intro" aria-label="Intro">
+      <div class="center">
+        <div class="badge">Since 2.2.2024</div>
+        <h1 class="brand">For Us ♡</h1>
+
+        <p class="lead">
+          I made you something small… but it holds a lot of love.
+        </p>
+
+        <button class="btn primary" data-go="test">Tap to continue</button>
+
+        <p class="hint">Best on your phone • full screen</p>
+      </div>
+    </section>
+
+    <!-- PAGE 2: TEST (navigation check only) -->
+    <section class="screen" id="test" aria-label="Test page">
+      <header class="topbar">
+        <button class="navbtn" data-go="intro" aria-label="Back">‹</button>
+        <div class="topbar-title">Navigation test</div>
+        <span class="navspacer"></span>
+      </header>
+
+      <div class="content">
+        <div class="card-soft">
+          ✅ If you can get here, your buttons & transitions work.
+        </div>
+
+        <div class="card-soft">
+          Next step: we’ll build the Lucky card page (realistic, minimal, luxury).
+        </div>
+      </div>
+
+      <div class="bottom">
+        <button class="btn ghost" data-go="intro">Back</button>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
