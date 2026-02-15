@@ -1,11 +1,7 @@
-/* Navigation */
 function go(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const el = document.getElementById(id);
-  if(!el){
-    console.error("Missing section id:", id);
-    return;
-  }
+  if(!el){ console.error("Missing section:", id); return; }
   el.classList.add('active');
 }
 
@@ -25,19 +21,11 @@ function go(id){
   tick();
 })();
 
-/* Envelope toggle (tap/keyboard) */
+/* Envelope */
 (function(){
   const env = document.getElementById("envelope");
   if(!env) return;
-
-  const toggle = () => env.classList.toggle("open");
-  env.addEventListener("click", toggle);
-  env.addEventListener("keydown", (e) => {
-    if(e.key === "Enter" || e.key === " "){
-      e.preventDefault();
-      toggle();
-    }
-  });
+  env.addEventListener("click", () => env.classList.toggle("open"));
 })();
 
 /* Secret video modal */
@@ -55,7 +43,7 @@ function go(id){
   modal.addEventListener("click", (e) => { if(e.target === modal) shut(); });
 })();
 
-/* Memory game (uses us1..us8 as pairs) */
+/* Memory Game (us1..us8) */
 (function(){
   const grid = document.getElementById("memoryGrid");
   if(!grid) return;
@@ -80,7 +68,6 @@ function go(id){
     const r = String(s%60).padStart(2,"0");
     return `${m}:${r}`;
   }
-
   function startTimer(){
     if(timer) return;
     timer = setInterval(() => {
@@ -88,7 +75,6 @@ function go(id){
       hudTime.textContent = fmtTime(seconds);
     }, 1000);
   }
-
   function stopTimer(){
     clearInterval(timer);
     timer = null;
@@ -112,7 +98,6 @@ function go(id){
     const card = document.createElement("button");
     card.className = "memory-card";
     card.type = "button";
-    card.setAttribute("aria-label","memory card");
 
     const back = document.createElement("div");
     back.className = "face back";
@@ -205,70 +190,6 @@ function go(id){
   });
 
   reset();
-})();
-
-/* Quiz (you can change the questions anytime) */
-(function(){
-  const box = document.getElementById("quizBox");
-  if(!box) return;
-
-  const questions = [
-    { q: "When is our anniversary?", opts: ["2.2.2024", "2.14.2024", "1.1.2024", "3.3.2024"], a: 0 },
-    { q: "A perfect date is…", opts: ["Simple + cozy", "Very fancy", "Super loud", "Always rushed"], a: 0 },
-    { q: "My favorite thing about you is…", opts: ["Your heart", "Your shoes", "Your phone", "Your emails"], a: 0 },
-    { q: "Us in one word:", opts: ["Lucky", "Temporary", "Random", "Meh"], a: 0 },
-    { q: "What do I want most?", opts: ["A life with you", "More drama", "Less love", "Nothing"], a: 0 },
-  ];
-
-  let i = 0;
-  let score = 0;
-
-  function render(){
-    const item = questions[i];
-    box.innerHTML = `
-      <div class="quiz-q">${item.q}</div>
-      <div class="quiz-opts">
-        ${item.opts.map((t,idx)=>`<button class="opt" data-idx="${idx}">${t}</button>`).join("")}
-      </div>
-      <div class="quiz-progress">Question ${i+1} / ${questions.length}</div>
-    `;
-
-    box.querySelectorAll(".opt").forEach(btn=>{
-      btn.addEventListener("click", () => {
-        const pick = Number(btn.dataset.idx);
-        const correct = pick === item.a;
-
-        if(correct){
-          btn.classList.add("correct");
-          score++;
-        }else{
-          btn.classList.add("wrong");
-          const correctBtn = box.querySelector(`.opt[data-idx="${item.a}"]`);
-          if(correctBtn) correctBtn.classList.add("correct");
-        }
-
-        box.querySelectorAll(".opt").forEach(b=>b.disabled=true);
-
-        setTimeout(() => {
-          i++;
-          if(i < questions.length){
-            render();
-          }else{
-            box.innerHTML = `
-              <div class="quiz-q">You finished ♡</div>
-              <div style="margin-top:8px; color: rgba(36,28,34,.75); line-height:1.6">
-                Score: <b>${score}</b> / ${questions.length}<br>
-                (But honestly… you’re perfect anyway.)
-              </div>
-              <div class="quiz-progress" style="margin-top:14px;">Tap Next →</div>
-            `;
-          }
-        }, 650);
-      });
-    });
-  }
-
-  render();
 })();
 
 /* Confetti */
